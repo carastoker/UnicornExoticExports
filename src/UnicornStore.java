@@ -6,6 +6,9 @@ public class UnicornStore {
     public static Scanner scan = new Scanner(System.in);
 
     private static void displayMenu(String name, double price, int quantity) {
+        String nombre = name;
+        double money = price;
+        int amount = quantity;
         System.out.println("Welcome to Unicorn Exports!");
         System.out.println("Choose an option:");
         System.out.println("---------------------------");
@@ -18,7 +21,7 @@ public class UnicornStore {
                 sale();
             } break;
             case 2: {
-                print();
+                print(nombre, money, amount);
             } break;
             default: {
                 System.exit(0);
@@ -52,9 +55,9 @@ public class UnicornStore {
 
     }
 
-    private static void print() {
+    private static void print(String name, double price, int quantity) {
 
-
+        System.out.println(name + "  " + quantity + "  " + price);
 
     }
 
@@ -64,7 +67,11 @@ public class UnicornStore {
 
     public static void main(String[] args) {
 
-        displayMenu();
+        String name = "name";
+        double price = 0.00;
+        int quantity = 0;
+
+        displayMenu(name, price, quantity);
 
     }
 
