@@ -29,6 +29,18 @@ public class UnicorStore {
 
     private static void sale() {
 
+        System.out.println("Type item name.");
+
+        String saleItemName = scan.nextLine();
+
+        System.out.println("How many items would you like?");
+
+        String saleItemQuantity = scan.next();
+
+        System.out.println("What price would you like to pay?");
+
+        String saleItemPrice = scan.nextLine();
+
     }
 
     private static void print() {
