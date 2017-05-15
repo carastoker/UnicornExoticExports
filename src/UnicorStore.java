@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 
-public class UnicorStore {
+public class UnicornStore {
 
     public static Scanner scan = new Scanner(System.in);
 
-    private static void displayMenu() {
+    private static void displayMenu(String name, double price, int quantity) {
         System.out.println("Welcome to Unicorn Exports!");
         System.out.println("Choose an option:");
         System.out.println("---------------------------");
@@ -34,11 +34,11 @@ public class UnicorStore {
 
         System.out.println("How many items would you like?");
 
-        double saleItemQuantity = scan.nextDouble();
+        int saleItemQuantity = scan.nextInt();
 
         System.out.println("What price would you like to pay?");
 
-        String saleItemPrice = scan.next();
+        double saleItemPrice = scan.nextDouble();
 
         System.out.println("Would you like to add another item to your cart? Y/N");
 
@@ -47,12 +47,14 @@ public class UnicorStore {
         if (cart.equalsIgnoreCase("y")) {
             sale();
         } else {
-            displayMenu();
+            displayMenu(saleItemName, saleItemPrice, saleItemQuantity);
         }
 
     }
 
     private static void print() {
+
+
 
     }
 
