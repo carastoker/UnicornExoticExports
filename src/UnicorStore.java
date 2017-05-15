@@ -3,10 +3,7 @@ import java.util.Scanner;
 
 public class UnicorStore {
 
-    static Scanner scan = new Scanner(System.in);
-
-
-    private static void displayMenu() {
+    private static void displayMenu(Scanner scan) {
         System.out.println("Welcome to Unicorn Exports!");
         System.out.println("Choose an option:");
         System.out.println("---------------------------");
@@ -27,7 +24,7 @@ public class UnicorStore {
         }
     }
 
-    private static void sale() {
+    private static void sale(Scanner scan) {
 
         System.out.println("Type item name.");
 
@@ -41,6 +38,16 @@ public class UnicorStore {
 
         String saleItemPrice = scan.nextLine();
 
+        System.out.println("Would you like to add another item to your cart? Y/N");
+
+        String cart = scan.next();
+
+        if (cart.equalsIgnoreCase("y")) {
+            sale();
+        } else {
+            displayMenu();
+        }
+
     }
 
     private static void print() {
@@ -51,9 +58,12 @@ public class UnicorStore {
 
     }
 
-    public static void main() {
+    public static void main(String[] args) {
 
-        displayMenu();
+        Scanner scan = new Scanner(System.in);
+
+        displayMenu(scan);
+        sale(scan);
 
     }
 
