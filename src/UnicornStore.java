@@ -49,17 +49,32 @@ public class UnicornStore {
 
         //Adds user input to "list".
         list += (saleItemName + " " + "x(" + saleItemQuantity + ") " + saleItemPrice + " " + " \n");
-        getTotal(list);
+
+        String priceString = list.substring(list.indexOf(") ")+2, list.lastIndexOf(" ")-1);
+        double priceNum = Double.parseDouble(priceString);
 
         //If user selects "y", calls sale() again and passes "list" as parameter.
         if (cart.equalsIgnoreCase("y")) {
-            sale(list, total);
 
+            getTotal(list, priceNum);
         } else {
             displayMenu(list, total);
             return list;
         } return list;
 
+    }
+
+    private static String getTotal(String list, double totalPassed) {
+
+        String price = list.substring(list.indexOf(") ")+2, list.lastIndexOf(" ")-1);
+        String amount = list.substring(list.indexOf("x(")+2, list.indexOf(") "));
+        double priceNum = Double.parseDouble(price);
+        double amountNum = Double.parseDouble(amount);
+        double total = ((amountNum * priceNum) + totalPassed);
+
+//        System.out.printf("%s $%.2f", "Total: ", total);
+
+        return sale(list, total);
     }
 
     //Literally just prints list.
@@ -68,15 +83,6 @@ public class UnicornStore {
         System.out.println(list);
         System.out.println("Your Total: "+ total);
 
-    }
-
-    private static String getTotal(String list) {
-
-        String amount = list.substring(list.indexOf(") ")+1, list.lastIndexOf(" "));
-        String price = list.substring(list.indexOf("x(")+2, list.indexOf(") "));
-        System.out.println(price + amount);
-
-        return price;
     }
 
     public static void main(String[] args) {
