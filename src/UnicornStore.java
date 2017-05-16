@@ -1,14 +1,13 @@
 import java.util.Scanner;
 
-
 public class UnicornStore {
 
     public static Scanner scan = new Scanner(System.in);
 
-    private static void displayMenu(String name, double price, int quantity) {
-        String nombre = name;
-        double money = price;
-        int amount = quantity;
+    //UI to give user options. If 1, sale. If 2, print. If 3, Exit.
+    private static void displayMenu(String list, double total) {
+        String receipt = "";
+        double initial = 0;
         System.out.println("Welcome to Unicorn Exports!");
         System.out.println("Choose an option:");
         System.out.println("---------------------------");
@@ -18,10 +17,10 @@ public class UnicornStore {
         int option = scan.nextInt();
         switch (option) {
             case 1: {
-                sale();
+                sale(receipt, initial);
             } break;
             case 2: {
-                print(nombre, money, amount);
+                print(list, total);
             } break;
             default: {
                 System.exit(0);
@@ -29,7 +28,8 @@ public class UnicornStore {
         }
     }
 
-    private static void sale() {
+    //Takes user input and adds results to String "list".
+    private static String sale(String list, double total) {
 
         System.out.println("Type item name.");
 
@@ -47,31 +47,42 @@ public class UnicornStore {
 
         String cart = scan.next();
 
+        //Adds user input to "list".
+        list += (saleItemName + " " + "x(" + saleItemQuantity + ") " + saleItemPrice + " " + " \n");
+        getTotal(list);
+
+        //If user selects "y", calls sale() again and passes "list" as parameter.
         if (cart.equalsIgnoreCase("y")) {
-            sale();
+            sale(list, total);
+
         } else {
-            displayMenu(saleItemName, saleItemPrice, saleItemQuantity);
-        }
+            displayMenu(list, total);
+            return list;
+        } return list;
 
     }
 
-    private static void print(String name, double price, int quantity) {
+    //Literally just prints list.
+    private static void print(String list, String total) {
 
-        System.out.println(name + "  " + quantity + "  " + price);
+        System.out.println(list);
+        System.out.println("Your Total: "+ total);
 
     }
 
-    private static void exit() {
+    private static String getTotal(String list) {
 
+        String total = list.substring(list.indexOf(" ", list.lastIndexOf(" ")));
+
+        return print(list, total);
     }
 
     public static void main(String[] args) {
 
-        String name = "name";
-        double price = 0.00;
-        int quantity = 0;
+        String list = "";
+        double total = 0;
 
-        displayMenu(name, price, quantity);
+        displayMenu(list, total);
 
     }
 
