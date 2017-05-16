@@ -63,7 +63,7 @@ public class UnicornStore {
     }
 
     //Literally just prints list.
-    private static void print(String list, String total) {
+    private static void print(String list, double total) {
 
         System.out.println(list);
         System.out.println("Your Total: "+ total);
@@ -72,9 +72,11 @@ public class UnicornStore {
 
     private static String getTotal(String list) {
 
-        String total = list.substring(list.indexOf(" ", list.lastIndexOf(" ")));
+        String amount = list.substring(list.indexOf(") ")+1, list.lastIndexOf(" "));
+        String price = list.substring(list.indexOf("x(")+2, list.indexOf(") "));
+        System.out.println(price + amount);
 
-        return print(list, total);
+        return price;
     }
 
     public static void main(String[] args) {
